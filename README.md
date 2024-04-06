@@ -1,1 +1,1 @@
-# fundig-ms-notification
+# FunerariaDigital - Microservicio de notificación
