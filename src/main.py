@@ -14,7 +14,6 @@ app = Flask(__name__)
 def send_email() -> Response:
 	# Obtener datos del cuerpo de la solicitud
 	data = request.json
-
 	# Simular el envío de un correo electrónico (aquí puedes agregar tu lógica real de envío de correo electrónico)
 	# En este ejemplo, simplemente imprimimos la información recibida en la consola.
 	# print(f"Email: {data['email']}")
@@ -53,7 +52,8 @@ def send_email() -> Response:
 
 if __name__ == '__main__':
 	# Utiliza Waitress como servidor en lugar del servidor de desarrollo de Flask para producción
-	from waitress import serve
+	"""from waitress import serve
 	print("Server running!")
-	serve(app, host='0.0.0.0', port=5000)
-	# app.run(debug=True)
+	serve(app, host='0.0.0.0', port=5000)"""
+	app.run(debug=True)
+	
