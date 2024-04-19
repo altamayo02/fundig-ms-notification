@@ -1,24 +1,19 @@
 import os
-from model.Notification import Notification, Templates
 from dotenv import load_dotenv
-# Carga las variables de entorno desde el archivo .env
-load_dotenv()
 
 from azure.communication.email import EmailClient
-
 from flask import Flask, request, jsonify, Response
 
+from model.Notification import Notification, Templates
+
+
+load_dotenv()
 app = Flask(__name__)
 
 @app.route('/send_email', methods=['POST'])
 def send_email() -> Response:
-	# Obtener datos del cuerpo de la solicitud
 	data = request.json
-	# Simular el envío de un correo electrónico (aquí puedes agregar tu lógica real de envío de correo electrónico)
-	# En este ejemplo, simplemente imprimimos la información recibida en la consola.
-	# print(f"Email: {data['email']}")
-	# print(f"Asunto: {data['subject']}")
-	# print(f"Cuerpo: {data['body']}")
+
 	try:
 		notification = Notification(data)
 		if notification.get_status_code() // 100 != 2:
@@ -34,7 +29,7 @@ def send_email() -> Response:
 				]
 			},
 			"content": {
-				"subject": data['subject'],
+				"subject": notification.get_subject(),
 				"html": notification.get_body()
 			}
 		}
@@ -52,8 +47,10 @@ def send_email() -> Response:
 
 if __name__ == '__main__':
 	# Utiliza Waitress como servidor en lugar del servidor de desarrollo de Flask para producción
-	"""from waitress import serve
+	"""
+	from waitress import serve
 	print("Server running!")
-	serve(app, host='0.0.0.0', port=5000)"""
+	serve(app, host='0.0.0.0', port=5000)
+	"""
 	app.run(debug=True)
 	
