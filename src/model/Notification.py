@@ -39,8 +39,8 @@ class Notification:
 			self.status_code = 400
 			return
 		
-		self._set_body(fields)
-		if fields["subject"]: self.subject = fields["subject"]
+		self._set_template(fields)
+		if "subject" in fields: self.subject = fields["subject"]
 	
 	def get_template(self) -> Templates:
 		return self.template
@@ -57,7 +57,7 @@ class Notification:
 	def get_response(self) -> dict[str, any]:
 		return self.response
 	
-	def _set_body(self, fields) -> None:
+	def _set_template(self, fields) -> None:
 		if self.template == Templates.TWOFACTOR:
 			self.body = f"""
 				<html>

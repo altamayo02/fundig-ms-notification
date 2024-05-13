@@ -36,7 +36,7 @@ def send_email() -> Response:
 
 		poller = client.begin_send(message)
 		result = poller.result()
-		print(result)
+		#print(result)
 	except Exception as ex:
 		print("Exception occurred:")
 		print(ex)
