@@ -1,6 +1,6 @@
 from enum import Enum
 
-# Template bodies are defined in _set_body(fields),
+# Template bodies are defined in _set_template(self, fields),
 # making use of the incoming fields
 class Templates(Enum):
 	TWOFACTOR = ["pin"]
